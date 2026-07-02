@@ -349,37 +349,61 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Widget _buildEmptyState() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.auto_fix_high,
-          size: 80,
-          color: Colors.grey.shade300,
-        ),
-        const SizedBox(height: 20),
-        const Text(
-          'Доброе утро',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF333333),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 40),
+          // Hero image placeholder
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: AspectRatio(
+              aspectRatio: 3 / 4,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    'assets/runes/fehu.png',
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    color: Colors.white.withOpacity(0.5),
+                  ),
+                  const Center(
+                    child: Text(
+                      'ᚠ',
+                      style: TextStyle(
+                        fontSize: 80,
+                        color: Color(0xFF8E8E93),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Тяни руну и получай знак на день',
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.grey.shade500,
+          const SizedBox(height: 20),
+          const Text(
+            'Доброе утро',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF333333),
+            ),
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 40),
-        // Кнопка в empty state
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SizedBox(
+          const SizedBox(height: 8),
+          Text(
+            'Потяните руну и узнайте свой знак на день',
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.grey.shade500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 40),
+          // Кнопка
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: _isDrawing ? null : _drawRune,
@@ -418,8 +442,9 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 20),
+        ],
+      ),
     );
   }
 
